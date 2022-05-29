@@ -61,7 +61,7 @@ View(table_1_pasto_select_subcounty_top10)
 
 table_1_pasto_select_subcounty_top10_plot <- table_1_pasto_select_subcounty_top10 %>%
   ggplot(aes(x = reorder(county_sub, total_pasto_livestock), y = total_pasto_livestock)) + 
-  geom_bar(stat = "identity", width = 0.5, fill = "darkgoldenrod1") + 
+  geom_bar(stat = "identity", width = 0.5, fill = "aquamarine3") + 
   coord_flip() + 
   theme_classic()+
   scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
@@ -93,7 +93,7 @@ View(table_1_pasto_select_subcounty_sheep_top10)
 
 table_1_pasto_select_subcounty_sheep_top10_plot <- table_1_pasto_select_subcounty_sheep_top10 %>%
   ggplot(aes(x = reorder(county_sub, sheep), y = sheep)) + 
-  geom_bar(stat = "identity", width = 0.5, fill = "darkgoldenrod1") + 
+  geom_bar(stat = "identity", width = 0.5, fill = "brown3") + 
   coord_flip() + 
   theme_classic()+
   scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
@@ -130,7 +130,7 @@ table_1_pasto_select_subcounty_goats_top10_plot <- table_1_pasto_select_subcount
   theme_classic()+
   scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
   labs(x = "County", 
-       y = "", 
+       y = "Number of Livestock", 
        title = "Goats",
        caption = "") +
   theme(axis.title.x =element_text(size = 15),
@@ -157,12 +157,12 @@ View(table_1_pasto_select_county_indi_cow_top10)
 
 table_1_pasto_select_county_indi_cow_top10_plot <- table_1_pasto_select_county_indi_cow_top10 %>%
   ggplot(aes(x = reorder(county_sub, indigenous_cattle), y = indigenous_cattle)) + 
-  geom_bar(stat = "identity", width = 0.5, fill = "darkgoldenrod1") + 
+  geom_bar(stat = "identity", width = 0.5, fill = "deeppink4") + 
   coord_flip() + 
   theme_classic()+
   scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
   labs(x = "County", 
-       y = "", 
+       y = "Number of Livestock", 
        title = "Indigenous Cattle",
        caption = "") +
   theme(axis.title.x =element_text(size = 15),

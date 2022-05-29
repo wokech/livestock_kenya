@@ -45,11 +45,22 @@ table_1_pasto_select <- table_1_pasto %>%
 View(table_1_pasto_select)
 glimpse(table_1_pasto_select)
 
+# County data
 table_1_pasto_select_county <- table_1_pasto_select %>%
   filter(admin_area == "County")
 
+#Subcounty data 
 table_1_pasto_select_subcounty <- table_1_pasto_select %>%
   filter(admin_area == "SubCounty")
+
+# Get the land area
+
+df_land_area <- V2_T2.2b %>%
+  clean_names()
+df_land_area_county <- df_land_area[2:48,] %>%
+  select(county, land_area_sq_km)
+
+pasto_select_area <- inner_join(table_1_pasto_select_county, df_land_area_county, by = "county")
 
 # Top 10 counties for sheep, goats, and indigenous cows combined
 
@@ -212,7 +223,7 @@ colnames(merged_df)
 glimpse(merged_df)
 
 
-# 9) Visualize the data
+# 9) Visualize the data for the total pastoralist livestock
 
 #install.packages("ggbreak")
 library(ggbreak)
@@ -277,6 +288,64 @@ ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_map.png
 barplot + map
 
 ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map.png", width = 8, height = 10)
+
+
+barplot_household <- table_1_pasto_select_county %>%
+  ggplot(aes(x = reorder(COUNTY, total_pasto_farm_household), y = total_pasto_farm_household, fill = total_pasto_farm_household)) + 
+  geom_bar(stat = "identity", width = 0.5) + 
+  coord_flip() + 
+  scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
+  scale_fill_gradient(low = "darkred", high = "yellow") + 
+  theme_classic() +
+  labs(x = "County", 
+       y = "Number of livestock per household", 
+       title = "",
+       subtitle = "",
+       caption = "",
+       fill = "Number per\nhousehold")+
+  theme(axis.title.x =element_text(size = 20),
+        axis.title.y =element_text(size = 20),
+        plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
+        plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
+        legend.title = element_text("Helvetica",size = 8, vjust = 1),
+        legend.position = "none",
+        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
+        panel.background = element_rect(fill = "white", colour = "white"))  
+
+barplot_household 
+
+# Save the plot
+ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_household.png", width = 6, height = 10)
+
+# Plot a base plot / map.
+
+plot(KenyaSHP$geometry, lty = 5, col = "green")
+
+
+#  ggplot2()
+
+# Legend in map is silenced because the bar graph has one
+
+map_household <- ggplot(data = merged_df)+
+  geom_sf(aes(geometry = geometry, fill = total_pasto_farm_household))+
+  theme_void()+
+  labs(title = "",
+       caption = "By @willyokech",
+       fill = "")+
+  theme(plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
+        legend.title = element_blank(),
+        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12))+
+  scale_fill_gradient(low = "darkred", high = "yellow") +
+  theme(legend.position = "none")  
+
+map_household
+
+# Save the plot
+ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_map_household.png", width = 6, height = 10)
+
+barplot_household + map_household
+
+ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map_household.png", width = 8, height = 10)
 
 
 # Visualizing pasto ownership within the different economic blocs
