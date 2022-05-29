@@ -1,6 +1,6 @@
 # Where do we find the most livestock in Kenya?
 
-## A set of visualizations looking at livestock distribution in Kenya
+## A set of visualizations looking at livestock distribution in Kenya.
 
 #### References/Data Sources
 1) 2019 Kenya Population and Housing Census
@@ -8,15 +8,35 @@
 
 ### 1) What is the population of various types of livestock in Kenya?
 
-The 2019 Kenya Population and Housing Census provides us with a brief summary of the total livestock populations (raw numbers) in Kenya
+A brief summary of the total livestock population (raw numbers) in Kenya.
 
 #### [Code](https://github.com/wokech/livestock_kenya/blob/main/R_scripts/livestock_kenya_national.R)
 ![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_national/treemap_livestock_national.png)
 
-### 2) Where are the largest populations of pastoralist livestock found?
-Note: Here we define pastoralist livestock as indigenous cattle, sheep, and goats
-
-#### a) Which county has the most number of pastoralist livestock?
+### 2) How many pastoralist livestock do farmers in your county keep?
+Notes
+1) Here we define pastoralist livestock as indigenous cattle, sheep, and goats. 
+2) Goats were not classified as exotic dairy or indigenous
 
 #### [Code](https://github.com/wokech/livestock_kenya/blob/main/R_scripts/livestock_kenya_county_pasto.R)
 ![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map.png)
+
+### 3) How many pastoralist livestock are there for every farming household in the county?
+
+#### [Code]()
+![alt text]()
+
+### 4) Where are you most likely to see indigenous cattle, sheep, and goats?
+#### Here, we look at the subcounties with the highest number of goats, sheep, and indigenous cows
+
+#### [Code](https://github.com/wokech/livestock_kenya/blob/main/R_scripts/livestock_kenya_subcounty_pasto.R)
+
+### Pastoral livestock
+![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_subcounty_pasto/subcounty_top10_pasto.png)
+
+### Indigenous cattle
+![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_subcounty_pasto/subcounty_top10_indi_cow.png)
+### Sheep
+![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_subcounty_pasto/subcounty_top10_sheep.png)
+### Goats
+![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_subcounty_pasto/subcounty_top10_goats.png)
