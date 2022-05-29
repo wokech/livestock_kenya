@@ -1,4 +1,4 @@
-# Where do we find the most livestock in Kenya?
+# Where do we find the highest concentrations of livestock in Kenya?
 
 ## A set of visualizations looking at livestock distribution in Kenya.
 
