@@ -1,4 +1,4 @@
-# Where do we find the most livestock in Kenya?
+# Where do we find the highest concentrations of livestock in Kenya?
 
 ## A set of visualizations looking at livestock distribution in Kenya.
 
@@ -13,7 +13,8 @@ A brief summary of the total livestock population (raw numbers) in Kenya.
 #### [Code](https://github.com/wokech/livestock_kenya/blob/main/R_scripts/livestock_kenya_national.R)
 ![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_national/treemap_livestock_national.png)
 
-### 2) How many pastoralist livestock do farmers in your county keep?
+### 2) Where are the pastoral livestock found?
+#### a) How many pastoralist livestock are found in your county?
 Notes
 1) Here we define pastoralist livestock as indigenous cattle, sheep, and goats. 
 2) Goats were not classified as exotic dairy or indigenous
@@ -21,10 +22,10 @@ Notes
 #### [Code](https://github.com/wokech/livestock_kenya/blob/main/R_scripts/livestock_kenya_county_pasto.R)
 ![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map.png)
 
-### 3) How many pastoralist livestock are there for every farming household in the county?
+#### b) How many pastoralist livestock are there for every farming household in the county?
 
-#### [Code]()
-![alt text]()
+#### [Code](https://github.com/wokech/livestock_kenya/blob/main/R_scripts/livestock_kenya_county_pasto.R)
+![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map_household.png)
 
 ### 4) Where are you most likely to see indigenous cattle, sheep, and goats?
 #### Here, we look at the subcounties with the highest number of goats, sheep, and indigenous cows
