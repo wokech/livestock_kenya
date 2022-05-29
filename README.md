@@ -31,13 +31,4 @@ Notes
 #### Here, we look at the subcounties with the highest number of goats, sheep, and indigenous cows
 
 #### [Code](https://github.com/wokech/livestock_kenya/blob/main/R_scripts/livestock_kenya_subcounty_pasto.R)
-
-### Pastoral livestock
-![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_subcounty_pasto/subcounty_top10_pasto.png)
-
-### Indigenous cattle
-![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_subcounty_pasto/subcounty_top10_indi_cow.png)
-### Sheep
-![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_subcounty_pasto/subcounty_top10_sheep.png)
-### Goats
-![alt text](https://github.com/wokech/livestock_kenya/blob/main/images/livestock_kenya_subcounty_pasto/subcounty_top10_goats.png)
+![alt text]()
