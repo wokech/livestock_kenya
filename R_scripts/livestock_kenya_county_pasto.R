@@ -246,7 +246,7 @@ barplot <- table_1_pasto_select_county %>%
 barplot 
 
 # Save the plot
-ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot.png", width = 7.5, height = 10)
+ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot.png", width = 6, height = 10)
 
 # Plot a base plot / map.
 
@@ -272,11 +272,11 @@ map <- ggplot(data = merged_df)+
 map
 
 # Save the plot
-ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_map.png", width = 7.5, height = 10)
+ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_map.png", width = 6, height = 10)
 
 barplot + map
 
-ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map.png", width = 10, height = 10)
+ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map.png", width = 8, height = 10)
 
 
 # Visualizing pasto ownership within the different economic blocs
