@@ -75,10 +75,12 @@ ggplot(table_1_select_tidy,
        aes(area = number, fill = livestock_type, 
            label = paste(livestock_type, comma(number), sep ="\n"))) +
   geom_treemap() +
-  labs(fill = "Livestock\nType") +
+  labs(fill = "Livestock\nType",
+       caption = "By @willyokech") +
   geom_treemap_text(colour = "black",
                     place = "centre",
-                    size = 10) + 
+                    size = 10,
+                    grow = TRUE) + 
   theme(legend.position = "bottom")  
 
 ggsave("images/livestock_kenya_national/treemap_livestock_national.png", width = 12, height = 8)
