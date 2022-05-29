@@ -239,6 +239,7 @@ barplot <- table_1_pasto_select_county %>%
         plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
         plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
         legend.title = element_text("Helvetica",size = 8, vjust = 1),
+        legend.position = "none",
         plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
         panel.background = element_rect(fill = "white", colour = "white"))  
 
