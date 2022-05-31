@@ -9,6 +9,9 @@
 library(rKenyaCensus) # Contains the 2019 Kenya Census data
 library(tidyverse)
 library(janitor)
+#install.packages("ggpmisc")
+library(ggpmisc)
+
 
 # 2) View the data available in the data catalogue
 
@@ -35,6 +38,9 @@ table_1_select <- table_1 %>%
 
 View(table_1_select)
 glimpse(table_1_select)
+
+indi_cow_to_exotic <- table_1_select$indigenous_cattle / (table_1_select$exotic_cattle_dairy + table_1_select$exotic_cattle_beef)
+
 
 
 # 5) ggplot2 visualization
@@ -73,7 +79,7 @@ table_1_select_tidy$livestock_type
 
 ggplot(table_1_select_tidy, 
        aes(area = number, fill = livestock_type, 
-           label = paste(livestock_type, comma(number), sep ="\n"))) +
+           label = livestock_type)) +
   geom_treemap() +
   labs(fill = "Livestock\nType",
        caption = "By @willyokech") +
@@ -81,6 +87,14 @@ ggplot(table_1_select_tidy,
                     place = "centre",
                     size = 10,
                     grow = TRUE) + 
-  theme(legend.position = "bottom")  
+  theme(legend.position = "bottom") +
+  scale_fill_brewer(palette = "Paired") 
+
 
 ggsave("images/livestock_kenya_national/treemap_livestock_national.png", width = 12, height = 8)
+
+table_1_select_tidy_print <- table_1_select_tidy %>%
+  select(livestock_type, number) %>%
+  arrange(desc(number))
+write.csv(table_1_select_tidy_print, 'table_to_print.csv')
+

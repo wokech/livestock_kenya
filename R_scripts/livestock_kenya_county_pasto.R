@@ -11,7 +11,7 @@ library(tidyverse)
 library(janitor)
 
 ### To filter out the FOREST data
-### filter_all(any_vars(grepl("FOREST", .)))
+### filter_all(any_vars(grepl("FOREST", .))) or PARK...
 ###
 
 # 2) View the data available in the data catalogue
@@ -35,7 +35,7 @@ table_1_pasto <- table_1_pasto %>%
   clean_names()
 
 table_1_pasto_select <- table_1_pasto %>%
-  select(county, sub_county, admin_area, farming, sheep, goats, indigenous_cattle) %>%
+  select(county, sub_county, admin_area, farming, sheep, goats, indigenous_cattle, exotic_cattle_dairy, exotic_cattle_beef) %>%
   mutate(total_pasto_livestock = sheep + goats + indigenous_cattle) %>%
   mutate(ind_cattle_farm_household = round(indigenous_cattle/farming)) %>%
   mutate(goats_farm_household = round(goats/farming)) %>%
@@ -98,6 +98,12 @@ table_1_pasto_select_county_indi_cow_top10 <- table_1_pasto_select_county %>%
 
 View(table_1_pasto_select_county_indi_cow_top10)
 
+# Ratio of indigenous cattle to exotic cattle
+
+table_1_indi_exotic_ratio <- table_1_pasto_select_county %>%
+  select(county, sub_county, admin_area, indigenous_cattle, exotic_cattle_dairy, exotic_cattle_beef) %>%
+  mutate(indi_exotic_ratio = round(indigenous_cattle/(exotic_cattle_dairy + exotic_cattle_beef),1)) %>%
+  arrange(desc(indi_exotic_ratio)) 
 
 # 5) Load the packages required for the maps
 
@@ -287,66 +293,7 @@ ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_map.png
 
 barplot + map
 
-ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map.png", width = 8, height = 10)
-
-
-barplot_household <- table_1_pasto_select_county %>%
-  ggplot(aes(x = reorder(COUNTY, total_pasto_farm_household), y = total_pasto_farm_household, fill = total_pasto_farm_household)) + 
-  geom_bar(stat = "identity", width = 0.5) + 
-  coord_flip() + 
-  scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
-  scale_fill_gradient(low = "darkred", high = "yellow") + 
-  theme_classic() +
-  labs(x = "County", 
-       y = "Number of livestock per household", 
-       title = "",
-       subtitle = "",
-       caption = "",
-       fill = "Number per\nhousehold")+
-  theme(axis.title.x =element_text(size = 20),
-        axis.title.y =element_text(size = 20),
-        plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
-        plot.subtitle = element_text(family = "URW Palladio L, Italic",size = 10, hjust = 0.5),
-        legend.title = element_text("Helvetica",size = 8, vjust = 1),
-        legend.position = "none",
-        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12),
-        panel.background = element_rect(fill = "white", colour = "white"))  
-
-barplot_household 
-
-# Save the plot
-ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_household.png", width = 6, height = 10)
-
-# Plot a base plot / map.
-
-plot(KenyaSHP$geometry, lty = 5, col = "green")
-
-
-#  ggplot2()
-
-# Legend in map is silenced because the bar graph has one
-
-map_household <- ggplot(data = merged_df)+
-  geom_sf(aes(geometry = geometry, fill = total_pasto_farm_household))+
-  theme_void()+
-  labs(title = "",
-       caption = "By @willyokech",
-       fill = "")+
-  theme(plot.title = element_text(family = "URW Palladio L, Italic",size = 16, hjust = 0.5),
-        legend.title = element_blank(),
-        plot.caption = element_text(family = "URW Palladio L, Italic",size = 12))+
-  scale_fill_gradient(low = "darkred", high = "yellow") +
-  theme(legend.position = "none")  
-
-map_household
-
-# Save the plot
-ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_map_household.png", width = 6, height = 10)
-
-barplot_household + map_household
-
-ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map_household.png", width = 8, height = 10)
-
+ggsave("images/livestock_kenya_county_pasto/all_counties_livestock_pasto_barplot_map.png", width = 10, height = 10)
 
 # Visualizing pasto ownership within the different economic blocs
 
